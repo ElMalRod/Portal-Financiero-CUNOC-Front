@@ -4,6 +4,7 @@ const Sidebar = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [comentario, setComentario] = useState('');
     const [message, setMessage] = useState('');
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
@@ -102,6 +103,42 @@ const Sidebar = () => {
 
                                         <span className="flex-1 ms-3 whitespace-nowrap">Reducir Saldo</span>
                                     </a>
+                                </li>
+                                <li>
+                                    <button
+                                        type="button"
+                                        className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                                        aria-controls="dropdown-example"
+                                        onClick={() => setIsDropdownOpen(!isDropdownOpen)} // Toggle del dropdown
+                                    >
+                                        <svg class="w-6 h-6 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd" d="M9 7V2.221a2 2 0 0 0-.5.365L4.586 6.5a2 2 0 0 0-.365.5H9Zm2 0V2h7a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9h5a2 2 0 0 0 2-2Zm-1 9a1 1 0 1 0-2 0v2a1 1 0 1 0 2 0v-2Zm2-5a1 1 0 0 1 1 1v6a1 1 0 1 1-2 0v-6a1 1 0 0 1 1-1Zm4 4a1 1 0 1 0-2 0v3a1 1 0 1 0 2 0v-3Z" clip-rule="evenodd" />
+                                        </svg>
+
+                                        <span className="flex-1 ms-3 text-left whitespace-nowrap">Reporte</span>
+                                        <svg className="w-3 h-3 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+                                        </svg>
+                                    </button>
+                                    {isDropdownOpen && (
+                                        <ul className="py-2 space-y-2">
+                                            <li>
+                                                <a href="/admin/reportes/reporteCierre" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte de Cierre</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/reportes/reporteCuentas" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte Cuentas</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/reportes/reporteCuentasBloqueadas" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte cuentas bloqueadas</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/reportes/reporteDetalleCuenta" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte detalle cuenta</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/reportes/reporteMovimientos" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte Movimientos</a>
+                                            </li>
+                                        </ul>
+                                    )}
                                 </li>
                             </>
                         )}
