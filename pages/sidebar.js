@@ -123,19 +123,19 @@ const Sidebar = () => {
                                     {isDropdownOpen && (
                                         <ul className="py-2 space-y-2">
                                             <li>
+                                                <a href="/admin/reportes/reporteMovimientos" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte de Movimientos</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/reportes/reporteCuentasBloqueadas" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte Cuentas Bloqueadas</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/reportes/reporteDetalleCuenta" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte Detalle de Cuentas</a>
+                                            </li>
+                                            <li>
+                                                <a href="/admin/reportes/reporteCuentas" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte de Cuentas</a>
+                                            </li>
+                                            <li>
                                                 <a href="/admin/reportes/reporteCierre" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte de Cierre</a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/reportes/reporteCuentas" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte Cuentas</a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/reportes/reporteCuentasBloqueadas" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte cuentas bloqueadas</a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/reportes/reporteDetalleCuenta" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte detalle cuenta</a>
-                                            </li>
-                                            <li>
-                                                <a href="/admin/reportes/reporteMovimientos" className="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Reporte Movimientos</a>
                                             </li>
                                         </ul>
                                     )}
