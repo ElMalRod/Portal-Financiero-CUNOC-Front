@@ -10,6 +10,8 @@ const Login = () => {
     const [comentarios, setComentarios] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [correoRecordatorio, setCorreoRecordatorio] = useState('');
+    const [currentImage, setCurrentImage] = useState(0);
+    const images = ['/images/anuncio1.png', '/images/anuncio2.png', '/images/anuncio3.png'];
     const router = useRouter();
 
     useEffect(() => {
@@ -28,6 +30,14 @@ const Login = () => {
 
         fetchComentarios();
     }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentImage((prevImage) => (prevImage + 1) % images.length);
+        }, 3000); // Cambia cada 3 segundos
+
+        return () => clearInterval(interval);
+    }, [images.length]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -141,7 +151,7 @@ const Login = () => {
                     </div>
                 </div>
             </section>
-
+        
             <section className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md">
                 <h2 className="text-xl font-bold mb-4">Últimos Comentarios</h2>
                 <ul className="space-y-4">
@@ -157,6 +167,29 @@ const Login = () => {
                         <p className="text-gray-500">No hay comentarios disponibles.</p>
                     )}
                 </ul>
+            </section>
+
+                        {/* Carrusel de imágenes */}
+            <section className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md mt-6">
+                <div className="relative flex justify-center items-center">
+                    <img
+                        src={images[currentImage]}
+                        alt={`Imagen ${currentImage + 1}`}
+                        className="rounded-lg shadow-md w-full h-64 object-cover"
+                    />
+                    <button
+                        onClick={() => setCurrentImage((currentImage - 1 + images.length) % images.length)}
+                        className="absolute left-0 bg-gray-800 text-white p-2 rounded-full"
+                    >
+                        &#10094;
+                    </button>
+                    <button
+                        onClick={() => setCurrentImage((currentImage + 1) % images.length)}
+                        className="absolute right-0 bg-gray-800 text-white p-2 rounded-full"
+                    >
+                        &#10095;
+                    </button>
+                </div>
             </section>
 
             {/* Modal para enviar recordatorio de PIN */}
