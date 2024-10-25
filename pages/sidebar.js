@@ -60,8 +60,8 @@ const Sidebar = () => {
 
             <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
                 <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-                    <a href="https://flowbite.com/" className="flex items-center justify-center">
-                        <img className="w-24 h-24 m-2" src="/images/1.png" alt="logo" />
+                    <a href="/dashboard" className="flex items-center justify-center">
+                        <img className="w-28 h-28 m-2" src="/images/1.png" alt="logo" />
                     </a>
                     <ul className="space-y-2 font-medium">
                         {isAdmin && (

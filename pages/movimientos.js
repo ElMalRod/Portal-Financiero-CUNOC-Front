@@ -52,10 +52,10 @@ const Movimientos = () => {
     }
 
     return (
-        <div>
-            <h2 className="text-xl font-bold mb-4">Movimientos</h2>
+        <>
+            
             {numeroTarjeta && (
-                <p className="text-gray-700 mb-4">Número de Tarjeta: **** **** **** {numeroTarjeta.slice(-4)}</p>
+                <p className="text-gray-700 mb-4 m-12">Número de Tarjeta: **** **** **** {numeroTarjeta.slice(-4)}</p>
             )}
             <ul className="space-y-4">
                 {movimientos.length > 0 ? (
@@ -67,10 +67,13 @@ const Movimientos = () => {
                         </li>
                     ))
                 ) : (
-                    <p className="text-gray-500">No hay movimientos disponibles.</p>
+                    <div>
+                        <h1 className='font-semibold text-2xl text-[#5E17EB]'>HISTORIAL</h1>
+                        <p className="text-gray-500">No hay movimientos disponibles.</p>
+                    </div>
                 )}
             </ul>
-        </div>
+        </>
     );
 };
 
