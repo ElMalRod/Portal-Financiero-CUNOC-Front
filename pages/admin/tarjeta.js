@@ -63,32 +63,34 @@ const Tarjeta = () => {
             <Sidebar />
             <div className="p-4 sm:ml-64">
                 <h1 className="text-lg font-semibold">Habilitar/Deshabilitar tarjeta</h1>
-                <table className="min-w-full border-collapse border border-gray-300 mt-4">
-                    <thead className="bg-gray-200">
+                <table className="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
-                            <th className="border border-gray-300 p-2">Nombre</th>
-                            <th className="border border-gray-300 p-2">Número de Tarjeta</th>
-                            <th className="border border-gray-300 p-2">Intentos Fallidos</th>
-                            <th className="border border-gray-300 p-2">Estado</th>
-                            <th className="border border-gray-300 p-2">Acciones</th>
+                            <th className="px-6 py-3">Nombre</th>
+                            <th className="px-6 py-3">Número de Tarjeta</th>
+                            <th className="px-6 py-3">Intentos Fallidos</th>
+                            <th className="px-6 py-3">Estado</th>
+                            <th className="px-6 py-3">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         {tarjetas.map(tarjeta => (
-                            <tr key={tarjeta.id_tarjeta}>
-                                <td className="border border-gray-300 p-2">{tarjeta.nombre_usuario}</td>
-                                <td className="border border-gray-300 p-2">{tarjeta.numero_tarjeta}</td>
-                                <td className="border border-gray-300 p-2">{tarjeta.intentos_fallidos}</td>
-                                <td className={`border border-gray-300 p-2 flex items-center`}>
+                            <tr key={tarjeta.id_tarjeta} className="bg-white border-b hover:bg-gray-50">
+                                <td className="px-6 py-4">{tarjeta.nombre_usuario}</td>
+                                <td className="px-6 py-4">{tarjeta.numero_tarjeta}</td>
+                                <td className="px-6 py-4">{tarjeta.intentos_fallidos}</td>
+                                <td className={`px-6 py-4 flex items-center`}>
                                     <span className={`rounded-full h-3 w-3 ${estadoColores[tarjeta.estado]} mr-2`}></span>
                                     {tarjeta.estado}
                                 </td>
-                                <td className="border border-gray-300 p-2">
-                                    <button 
-                                        onClick={() => handleCambiarEstado(tarjeta)} 
-                                        className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
+                                <td className="px-6 py-4">
+                                    <button
+                                        onClick={() => handleCambiarEstado(tarjeta)}
+                                        className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                     >
-                                        Cambiar Estado
+                                        <svg class="w-6 h-6 text-blue-700 dark:text-purple" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+                                        </svg>
                                     </button>
                                 </td>
                             </tr>
@@ -105,10 +107,10 @@ const Tarjeta = () => {
                                     <label className="block mb-1">
                                         Nuevo Estado:
                                     </label>
-                                    <select 
-                                        value={nuevoEstado} 
-                                        onChange={(e) => setNuevoEstado(e.target.value)} 
-                                        required 
+                                    <select
+                                        value={nuevoEstado}
+                                        onChange={(e) => setNuevoEstado(e.target.value)}
+                                        required
                                         className="border border-gray-300 p-2 w-full"
                                     >
                                         <option value="">Seleccione un estado</option>
@@ -122,24 +124,24 @@ const Tarjeta = () => {
                                     <label className="block mb-1">
                                         Motivo:
                                     </label>
-                                    <input 
-                                        type="text" 
-                                        value={motivo} 
-                                        onChange={(e) => setMotivo(e.target.value)} 
-                                        required 
+                                    <input
+                                        type="text"
+                                        value={motivo}
+                                        onChange={(e) => setMotivo(e.target.value)}
+                                        required
                                         className="border border-gray-300 p-2 w-full"
                                     />
                                 </div>
                                 <div className="flex justify-between">
-                                    <button 
-                                        type="submit" 
+                                    <button
+                                        type="submit"
                                         className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600"
                                     >
                                         Enviar
                                     </button>
-                                    <button 
-                                        type="button" 
-                                        onClick={() => setModalOpen(false)} 
+                                    <button
+                                        type="button"
+                                        onClick={() => setModalOpen(false)}
                                         className="bg-gray-300 text-black py-1 px-3 rounded hover:bg-gray-400"
                                     >
                                         Cerrar

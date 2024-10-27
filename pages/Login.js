@@ -65,7 +65,15 @@ const Login = () => {
             localStorage.setItem('user', JSON.stringify(data));
             console.log('Datos almacenados en localStorage:', data);
 
-            router.push('/dashboard');
+            if(data.usuario.rol == 'cliente')
+            {
+                router.push('/dashboard');
+            }
+            else
+            {
+                router.push('/admin/zona');
+            }
+
         } catch (error) {
             setError(error.message);
         }
