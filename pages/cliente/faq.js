@@ -25,7 +25,7 @@ const Faq = () => {
             <Topbar />
             <Sidebar />
             <div className="p-4 sm:ml-64">
-                <h1 className="text-2xl font-bold mb-6">Preguntas Frecuentes (FAQ)</h1>
+                <h1 className="text-2xl font-bold mb-4 text-[#5E17EB]">Preguntas Frecuentes (FAQ)</h1>
                 
                 <div className="space-y-4">
                     {faqs.map((faq) => (

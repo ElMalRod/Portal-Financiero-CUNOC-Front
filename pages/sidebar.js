@@ -62,6 +62,12 @@ const Sidebar = () => {
             <aside id="logo-sidebar" className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform bg-gray-50 dark:bg-gray-800 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
                 } sm:translate-x-0`}
                 aria-label="Sidebar">
+                <button data-drawer-target="logo-sidebar" onClick={() => setIsSidebarOpen(!isSidebarOpen)} data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    <span className="sr-only">Open sidebar</span>
+                    <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path clipRule="evenodd" fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                    </svg>
+                </button>
                 <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                     <a href="/dashboard" className="flex items-center justify-center">
                         <img className="w-28 h-28 m-2" src="/images/1.png" alt="logo" />
@@ -114,8 +120,7 @@ const Sidebar = () => {
                                             <path fill-rule="evenodd" d="M5 14a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Zm5 0a1 1 0 0 1 1-1h5a1 1 0 1 1 0 2h-5a1 1 0 0 1-1-1Z" clip-rule="evenodd" />
                                         </svg>
 
-
-                                        <span className="flex-1 ms-3 whitespace-nowrap">TarjetasVinculadas</span>
+                                        <span className="flex-1 ms-3 whitespace-nowrap">Tarjetas Vinculadas</span>
                                     </a>
                                 </li>
                                 <li>
@@ -158,6 +163,15 @@ const Sidebar = () => {
                         )}
                         {isCliente && (
                             <>
+                                <li>
+                                    <a href="/cliente/historial" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                        <svg class="w-6 h-6 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd" d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z" clip-rule="evenodd" />
+                                        </svg>
+
+                                        <span className="flex-1 ms-3 whitespace-nowrap">Historial</span>
+                                    </a>
+                                </li>
                                 <li>
                                     <div onClick={() => setIsModalOpen(true)} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                         <svg className="w-6 h-6 text-gray-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">

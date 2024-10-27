@@ -53,7 +53,7 @@ const FormularioCrearCuenta = ({ onSubmit }) => {
   return (
     <div>
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold mb-4">Crear Nueva Cuenta</h2>
+        <h2 className="text-2xl font-bold mb-4 text-[#5E17EB]">Crear Nueva Cuenta</h2>
         
         <div>
           <label className="block mb-2">Nombre de Usuario</label>
@@ -114,7 +114,7 @@ const FormularioCrearCuenta = ({ onSubmit }) => {
           )}
         </div>
 
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded w-full">
+        <button type="submit" className="bg-[#5E17EB] text-white p-2 rounded w-full">
           Confirmar
         </button>
       </form>

@@ -27,7 +27,7 @@ const FormularioModificarCuenta = ({ onSubmit, usuario }) => {
 
     return (
         <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">Modificar Cuenta</h2>
+            <h2 className="text-2xl font-bold mb-4 text-[#5E17EB]">Modificar Cuenta</h2>
 
             <div>
                 <label className="block mb-2">Nombre de Usuario</label>
@@ -75,7 +75,7 @@ const FormularioModificarCuenta = ({ onSubmit, usuario }) => {
                 <label>Notificarme</label>
             </div>
 
-            <button type="submit" className="mt-4 bg-blue-500 text-white p-2 rounded">
+            <button type="submit" className="mt-4 bg-[#5E17EB] text-white p-2 rounded">
                 Modificar Cuenta
             </button>
         </form>

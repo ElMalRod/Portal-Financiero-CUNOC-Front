@@ -55,7 +55,7 @@ const ReporteCuentas = () => {
             <Topbar />
             <Sidebar />
             <div className="p-4 sm:ml-64">
-                <h1 className="text-2xl font-bold mb-4">Reporte de Cuentas</h1>
+                <h1 className="text-2xl font-bold mb-4 text-[#5E17EB]">Reporte de Cuentas</h1>
 
                 {loading && <p>Cargando...</p>}
                 {error && <p className="text-red-500">{error}</p>}

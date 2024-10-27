@@ -40,7 +40,7 @@ const ReporteDetalleCuenta = () => {
             <Topbar />
             <Sidebar />
             <div className="p-4 sm:ml-64">
-                <h1 className="text-2xl font-bold mb-4">Reporte de Detalle de Cuenta</h1>
+                <h1 className="text-2xl font-bold mb-4 text-[#5E17EB]">Reporte de Detalle de Cuenta</h1>
 
                 {/* Campo de búsqueda */}
                 <div className="mb-4">
@@ -53,7 +53,7 @@ const ReporteDetalleCuenta = () => {
                     />
                     <button
                         onClick={handleBuscar}
-                        className="ml-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                        className="ml-2 bg-[#5E17EB] text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
                     >
                         Buscar
                     </button>

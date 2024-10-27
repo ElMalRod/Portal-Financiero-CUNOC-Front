@@ -81,7 +81,7 @@ const Saldo = () => {
             <Topbar />
             <Sidebar />
             <div className="p-4 sm:ml-64">
-                <h1 className="text-2xl font-bold mb-4">Reducir Saldo del Cliente</h1>
+                <h1 className="text-2xl font-bold mb-4 text-[#5E17EB]">Reducir Saldo del Cliente</h1>
                 
                 <div className="mb-4">
                     <label className="block mb-2 text-sm font-medium text-gray-700">Número de Tarjeta</label>
@@ -93,7 +93,7 @@ const Saldo = () => {
                     />
                     <button
                         onClick={buscarCliente}
-                        className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
+                        className="mt-2 bg-[#5E17EB] text-white px-4 py-2 rounded-md hover:bg-blue-600 transition"
                     >
                         Buscar Cliente
                     </button>

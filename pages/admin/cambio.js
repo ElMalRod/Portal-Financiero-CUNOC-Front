@@ -60,7 +60,7 @@ const Cambio = () => {
             <Topbar />
             <Sidebar />
             <div className="p-4 sm:ml-64">
-                <h1 className="text-2xl font-bold mb-4">Tipo de Cambio</h1>
+                <h1 className="text-2xl font-bold mb-4 text-[#5E17EB]">Tipo de Cambio</h1>
                 <div className="mb-4">
                     <div className="flex items-center bg-gray-100 p-4 rounded-lg shadow">
                         {/* Icono de Dólar */}
