@@ -3,11 +3,12 @@ import React, { useEffect, useState } from 'react';
 const Movimientos = () => {
     const [movimientos, setMovimientos] = useState([]);
     const [numeroTarjeta, setNumeroTarjeta] = useState('');
+    const [tarjetas, setTarjetas] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchMovimientos = async () => {
+        const fetchTarjetas = () => {
             const user = JSON.parse(localStorage.getItem('user'));
             if (!user || !user.usuario || !user.usuario.id) {
                 setError('Usuario no encontrado.');
@@ -15,33 +16,63 @@ const Movimientos = () => {
                 return;
             }
 
-            const id_usuario = user.usuario.id;
-
-            try {
-                const response = await fetch('http://localhost:3000/api/movimientos/movimientos-usuario', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ id_usuario }),
-                });
-
-                if (!response.ok) {
-                    throw new Error('No hay movimientos disponibles.');
-                }
-
-                const data = await response.json();
-                setNumeroTarjeta(data.data.numero_tarjeta); // Guardar el número de tarjeta
-                setMovimientos(data.movimientos); // Guardar los movimientos
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
+            const numerosTarjetas = user.usuario.numeros_tarjetas.split(', ');
+            setTarjetas(numerosTarjetas);
+            
+            if (numerosTarjetas.length > 0) {
+                setNumeroTarjeta(numerosTarjetas[0]); // Establecer el primer número de tarjeta
+            } else {
+                setError('No se encontraron tarjetas.');
             }
+            setLoading(false); // Asegúrate de finalizar la carga
         };
 
-        fetchMovimientos();
+        fetchTarjetas();
     }, []);
+
+    useEffect(() => {
+        if (numeroTarjeta) {
+            fetchMovimientos(numeroTarjeta);
+        }
+    }, [numeroTarjeta]);
+
+    const fetchMovimientos = async (tarjeta) => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user || !user.usuario || !user.usuario.id) {
+            setError('Usuario no encontrado.');
+            setLoading(false);
+            return;
+        }
+
+        const id_usuario = user.usuario.id;
+
+        try {
+            const response = await fetch('http://localhost:3000/api/movimientos/movimientos-usuario', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id_usuario, numero_tarjeta: tarjeta }),
+            });
+
+            if (!response.ok) {
+                throw new Error('No hay movimientos disponibles.');
+            }
+
+            const data = await response.json();
+            setMovimientos(data.movimientos); // Guardar los movimientos
+            setError(null); // Resetear el error si la petición fue exitosa
+        } catch (error) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleSelectChange = (event) => {
+        const selectedNumeroTarjeta = event.target.value;
+        setNumeroTarjeta(selectedNumeroTarjeta);
+    };
 
     if (loading) {
         return <p>Cargando movimientos...</p>;
@@ -53,10 +84,27 @@ const Movimientos = () => {
 
     return (
         <>
-            
-            {numeroTarjeta && (
-                <p className="text-gray-700 mb-4 m-12">Número de Tarjeta: **** **** **** {numeroTarjeta.slice(-4)}</p>
+            <h1 className='font-semibold text-2xl text-[#5E17EB]'>HISTORIAL</h1>
+
+            {tarjetas.length > 0 && (
+                <div className="mb-4">
+                    <label htmlFor="numeroTarjeta" className="block mb-2">Selecciona una tarjeta:</label>
+                    <select
+                        id="numeroTarjeta"
+                        value={numeroTarjeta}
+                        onChange={handleSelectChange}
+                        className="border border-gray-300 rounded-md p-2"
+                    >
+                        <option value="">Seleccione una tarjeta</option>
+                        {tarjetas.map((tarjeta, index) => (
+                            <option key={index} value={tarjeta}>
+                                {tarjeta}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             )}
+
             <ul className="space-y-4">
                 {movimientos.length > 0 ? (
                     movimientos.map((movimiento, index) => (
@@ -67,10 +115,7 @@ const Movimientos = () => {
                         </li>
                     ))
                 ) : (
-                    <div>
-                        <h1 className='font-semibold text-2xl text-[#5E17EB]'>HISTORIAL</h1>
-                        <p className="text-gray-500">No hay movimientos disponibles.</p>
-                    </div>
+                    <p className="text-gray-500">No hay movimientos disponibles para esta tarjeta.</p>
                 )}
             </ul>
         </>

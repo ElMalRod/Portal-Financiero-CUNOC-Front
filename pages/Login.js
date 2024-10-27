@@ -47,7 +47,7 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+    
         try {
             const response = await fetch('http://localhost:3000/api/auth/login', {
                 method: 'POST',
@@ -56,28 +56,40 @@ const Login = () => {
                 },
                 body: JSON.stringify({ correo, pin }),
             });
-
+    
             if (!response.ok) {
                 throw new Error('Error en la autenticación');
             }
-
+    
             const data = await response.json();
-            localStorage.setItem('user', JSON.stringify(data));
-            console.log('Datos almacenados en localStorage:', data);
-
-            if(data.usuario.rol == 'cliente')
-            {
+            
+            // Almacenar datos en localStorage
+            const userData = {
+                token: data.token,
+                usuario: {
+                    id: data.usuario.id,
+                    nombre: data.usuario.nombre,
+                    correo: data.usuario.correo,
+                    notifyme: data.usuario.notifyme,
+                    rol: data.usuario.rol,
+                    numeros_tarjetas: data.usuario.numeros_tarjetas || [],
+                },
+            };
+            
+            localStorage.setItem('user', JSON.stringify(userData));
+            console.log('Datos almacenados en localStorage:', userData);
+    
+            if(data.usuario.rol === 'cliente') {
                 router.push('/dashboard');
-            }
-            else
-            {
+            } else {
                 router.push('/admin/zona');
             }
-
+    
         } catch (error) {
             setError(error.message);
         }
     };
+    
 
     const handleRecordatorio = async () => {
         setError(null);
