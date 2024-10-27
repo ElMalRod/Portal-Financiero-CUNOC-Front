@@ -9,6 +9,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [comentarios, setComentarios] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false);
     const [correoRecordatorio, setCorreoRecordatorio] = useState('');
     const [currentImage, setCurrentImage] = useState(0);
     const images = ['/images/anuncio1.png', '/images/anuncio2.png', '/images/anuncio3.png'];
@@ -38,6 +39,11 @@ const Login = () => {
 
         return () => clearInterval(interval);
     }, [images.length]);
+
+    const handleImageClick = (index) => {
+        setCurrentImage(index);
+        setIsImageModalOpen(true);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -151,10 +157,10 @@ const Login = () => {
                     </div>
                 </div>
             </section>
-        
-            <section className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-bold mb-4">Últimos Comentarios</h2>
+
+            <section className="w-full flex flex-col md:w-1/2 p-6 rounded-lg shadow-md">
                 <ul className="space-y-4">
+                    <h2 className="text-xl font-bold mb-4">Últimos Comentarios</h2>
                     {comentarios.length > 0 ? (
                         comentarios.map((comentario, index) => (
                             <li key={index} className="border p-4 rounded-md shadow-sm">
@@ -167,30 +173,50 @@ const Login = () => {
                         <p className="text-gray-500">No hay comentarios disponibles.</p>
                     )}
                 </ul>
-            </section>
 
-                        {/* Carrusel de imágenes */}
-            <section className="w-full md:w-1/2 bg-white p-6 rounded-lg shadow-md mt-6">
-                <div className="relative flex justify-center items-center">
-                    <img
-                        src={images[currentImage]}
-                        alt={`Imagen ${currentImage + 1}`}
-                        className="rounded-lg shadow-md w-full h-64 object-cover"
-                    />
-                    <button
-                        onClick={() => setCurrentImage((currentImage - 1 + images.length) % images.length)}
-                        className="absolute left-0 bg-gray-800 text-white p-2 rounded-full"
-                    >
-                        &#10094;
-                    </button>
-                    <button
-                        onClick={() => setCurrentImage((currentImage + 1) % images.length)}
-                        className="absolute right-0 bg-gray-800 text-white p-2 rounded-full"
-                    >
-                        &#10095;
-                    </button>
+                <div className="w-full h-[400px] bg-white rounded-lg shadow-md mt-6">
+                    <div className="flex h-full w-full justify-center items-center">
+                        <button
+                            onClick={() => setCurrentImage((currentImage - 1 + images.length) % images.length)}
+                            className="bg-gray-800 text-white p-2 rounded-full"
+                        >
+                            &#10094;
+                        </button>
+                        <img
+                            src={images[currentImage]}
+                            alt={`Imagen ${currentImage + 1}`}
+                            className="rounded-lg shadow-md max-h-full w-full object-cover cursor-pointer"
+                            onClick={() => handleImageClick(currentImage)}
+                        />
+                        <button
+                            onClick={() => setCurrentImage((currentImage + 1) % images.length)}
+                            className="bg-gray-800 text-white p-2 rounded-full"
+                        >
+                            &#10095;
+                        </button>
+                    </div>
                 </div>
             </section>
+
+            {/* Modal de imagen completa */}
+            {isImageModalOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg max-w-lg">
+                        <img
+                            src={images[currentImage]}
+                            alt={`Imagen ${currentImage + 1}`}
+                            className="rounded-lg shadow-md w-full object-cover"
+                        />
+                        <button
+                            onClick={() => setIsImageModalOpen(false)}
+                            className="mt-4 bg-gray-800 text-white rounded-lg px-4 py-2"
+                        >
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            )}
+
 
             {/* Modal para enviar recordatorio de PIN */}
             {isModalOpen && (
