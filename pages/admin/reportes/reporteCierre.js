@@ -14,7 +14,7 @@ const ReporteCierre = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await fetch(`http://localhost:3000/api/reportes/cierres-cuentas?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reportes/cierres-cuentas?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`);
             if (!response.ok) {
                 throw new Error('Error al obtener los cierres de cuentas');
             }

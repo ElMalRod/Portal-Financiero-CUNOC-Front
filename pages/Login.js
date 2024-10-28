@@ -18,7 +18,7 @@ const Login = () => {
     useEffect(() => {
         const fetchComentarios = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/comentarios/ultimos-comentarios');
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comentarios/ultimos-comentarios`);
                 if (!response.ok) {
                     throw new Error('Error al obtener comentarios');
                 }
@@ -49,7 +49,7 @@ const Login = () => {
         e.preventDefault();
     
         try {
-            const response = await fetch('http://localhost:3000/api/auth/login', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ const Login = () => {
         setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:3000/api/auth/recordatorio-pin', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/recordatorio-pin`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

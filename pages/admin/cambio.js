@@ -11,7 +11,7 @@ const Cambio = () => {
     // Obtener tipo de cambio
     const fetchTipoCambio = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/tipo-cambio');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tipo-cambio`);
             const data = await response.json();
             setTipoCambio(data);
         } catch (error) {
@@ -22,7 +22,7 @@ const Cambio = () => {
     // Actualizar tipo de cambio
     const actualizarTipoCambio = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/tipo-cambio', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tipo-cambio`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ const TarjetasVinculadas = () => {
     // Fetch para obtener los usuarios vinculados desde la API
     const fetchUsuariosVinculados = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/saldo/obtener-vinculadas');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/saldo/obtener-vinculadas`);
             const data = await response.json();
             setUsuarios(data);
         } catch (error) {
@@ -22,7 +22,7 @@ const TarjetasVinculadas = () => {
         if (!confirmacion) return;
 
         try {
-            const response = await fetch('http://localhost:3000/api/saldo/desvincular-tarjeta', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/saldo/desvincular-tarjeta`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,27 +53,27 @@ const TarjetasVinculadas = () => {
             <Topbar />
             <Sidebar />
             <div className="p-4 sm:ml-64">
-                <h1 className="text-2xl font-bold mb-4">Usuarios Vinculados</h1>
+                <h1 className="text-2xl font-bold mb-4 text-[#5E17EB]">Usuarios Vinculados</h1>
 
                 {/* Tabla de Usuarios Vinculados */}
-                <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white border border-gray-200">
-                        <thead>
-                            <tr className="bg-gray-100">
-                                <th className="py-2 px-4 border-b">Número de Tarjeta</th>
-                                <th className="py-2 px-4 border-b">Nombre del Usuario</th>
-                                <th className="py-2 px-4 border-b">Correo</th>
-                                <th className="py-2 px-4 border-b">Acciones</th>
+                <div className="overflow-x-auto shadow-md sm:rounded-lg mt-6">
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th className="px-6 py-3">Número de Tarjeta</th>
+                                <th className="px-6 py-3">Nombre del Usuario</th>
+                                <th className="px-6 py-3">Correo</th>
+                                <th className="px-6 py-3">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             {usuarios.length > 0 ? (
                                 usuarios.map((usuario, index) => (
-                                    <tr key={index} className="text-center">
-                                        <td className="py-2 px-4 border-b">{usuario.numero_tarjeta}</td>
-                                        <td className="py-2 px-4 border-b">{usuario.nombre_usuario}</td>
-                                        <td className="py-2 px-4 border-b">{usuario.correo}</td>
-                                        <td className="py-2 px-4 border-b">
+                                    <tr key={index} className="bg-white border-b hover:bg-gray-50">
+                                        <td className="px-6 py-4">{usuario.numero_tarjeta}</td>
+                                        <td className="px-6 py-4">{usuario.nombre_usuario}</td>
+                                        <td className="px-6 py-4">{usuario.correo}</td>
+                                        <td className="px-6 py-4">
                                             <button
                                                 className="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
                                                 onClick={() => handleDesvincular(usuario.numero_tarjeta, usuario.nombre_usuario, usuario.correo)}

@@ -12,7 +12,7 @@ const Saldo = () => {
     // Función para buscar el cliente por número de tarjeta
     const buscarCliente = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/reportes/detalle-cuenta/${numeroTarjeta}`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reportes/detalle-cuenta/${numeroTarjeta}`);
             const data = await response.json();
             if (data.length > 0) {
                 setCliente(data[0]);
@@ -35,7 +35,7 @@ const Saldo = () => {
         }
         
         try {
-            const response = await fetch('http://localhost:3000/api/saldo/agregar-saldo', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/saldo/agregar-saldo`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

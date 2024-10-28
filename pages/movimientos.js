@@ -47,7 +47,7 @@ const Movimientos = () => {
         const id_usuario = user.usuario.id;
 
         try {
-            const response = await fetch('http://localhost:3000/api/movimientos/movimientos-usuario', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/movimientos/movimientos-usuario`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ const ReporteCuentas = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await fetch('http://localhost:3000/api/reportes/cuentas-estado');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reportes/cuentas-estado`);
             if (!response.ok) {
                 throw new Error('Error al obtener los estados de las cuentas');
             }

@@ -12,7 +12,7 @@ const Sidebar = () => {
         const token = JSON.parse(localStorage.getItem('user')).token;
 
         try {
-            const response = await fetch('http://localhost:3000/api/comentarios/dejar-comentario', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comentarios/dejar-comentario`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

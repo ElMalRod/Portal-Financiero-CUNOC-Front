@@ -10,7 +10,7 @@ const ReporteCuentasBloqueadas = () => {
     // Fetch para obtener los datos de cuentas bloqueadas
     const fetchCuentasBloqueadas = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/reportes/cuentas-bloqueadas');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reportes/cuentas-bloqueadas`);
             if (!response.ok) {
                 throw new Error('Error al obtener las cuentas bloqueadas');
             }

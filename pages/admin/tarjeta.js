@@ -18,7 +18,7 @@ const Tarjeta = () => {
     };
 
     const obtenerTarjetas = async () => {
-        const response = await fetch('http://localhost:3000/api/saldo/obtener-tarjetas');
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/saldo/obtener-tarjetas`);
         const data = await response.json();
         setTarjetas(data);
     };
@@ -35,7 +35,7 @@ const Tarjeta = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const response = await fetch('http://localhost:3000/api/cuentas/tarjetas/cambiar-estado', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cuentas/tarjetas/cambiar-estado`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -63,40 +63,43 @@ const Tarjeta = () => {
             <Sidebar />
             <div className="p-4 sm:ml-64">
                 <h1 className="text-2xl font-bold mb-4 text-[#5E17EB]">Habilitar/Deshabilitar tarjeta</h1>
-                <table className="w-full text-sm text-left rtl:text-right text-gray-500">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-                        <tr>
-                            <th className="px-6 py-3">Nombre</th>
-                            <th className="px-6 py-3">Número de Tarjeta</th>
-                            <th className="px-6 py-3">Intentos Fallidos</th>
-                            <th className="px-6 py-3">Estado</th>
-                            <th className="px-6 py-3">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {tarjetas.map(tarjeta => (
-                            <tr key={tarjeta.id_tarjeta} className="bg-white border-b hover:bg-gray-50">
-                                <td className="px-6 py-4">{tarjeta.nombre_usuario}</td>
-                                <td className="px-6 py-4">{tarjeta.numero_tarjeta}</td>
-                                <td className="px-6 py-4">{tarjeta.intentos_fallidos}</td>
-                                <td className={`px-6 py-4 flex items-center`}>
-                                    <span className={`rounded-full h-3 w-3 ${estadoColores[tarjeta.estado]} mr-2`}></span>
-                                    {tarjeta.estado}
-                                </td>
-                                <td className="px-6 py-4">
-                                    <button
-                                        onClick={() => handleCambiarEstado(tarjeta)}
-                                        className="font-medium text-blue-600 dark:text-[#5E17EB] hover:underline"
-                                    >
-                                        <svg class="w-6 h-6 text-blue-700 dark:text-purple" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                                        </svg>
-                                    </button>
-                                </td>
+
+                <div className="overflow-x-auto shadow-md sm:rounded-lg mt-6">
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500">
+                        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                            <tr>
+                                <th className="px-6 py-3">Nombre</th>
+                                <th className="px-6 py-3">Número de Tarjeta</th>
+                                <th className="px-6 py-3">Intentos Fallidos</th>
+                                <th className="px-6 py-3">Estado</th>
+                                <th className="px-6 py-3">Acciones</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {tarjetas.map(tarjeta => (
+                                <tr key={tarjeta.id_tarjeta} className="bg-white border-b hover:bg-gray-50">
+                                    <td className="px-6 py-4">{tarjeta.nombre_usuario}</td>
+                                    <td className="px-6 py-4">{tarjeta.numero_tarjeta}</td>
+                                    <td className="px-6 py-4">{tarjeta.intentos_fallidos}</td>
+                                    <td className={`px-6 py-4 flex items-center`}>
+                                        <span className={`rounded-full h-3 w-3 ${estadoColores[tarjeta.estado]} mr-2`}></span>
+                                        {tarjeta.estado}
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <button
+                                            onClick={() => handleCambiarEstado(tarjeta)}
+                                            className="font-medium text-blue-600 dark:text-[#5E17EB] hover:underline"
+                                        >
+                                            <svg class="w-6 h-6 text-blue-700 dark:text-purple" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+                                            </svg>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
 
                 {modalOpen && (
                     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

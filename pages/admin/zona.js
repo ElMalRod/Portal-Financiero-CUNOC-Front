@@ -27,7 +27,7 @@ const Zona = () => {
 
     const fetchUsuarios = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/users/usuarios');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/usuarios`);
             if (!response.ok) {
                 throw new Error('Error al obtener usuarios');
             }
@@ -45,7 +45,7 @@ const Zona = () => {
     // para crear una nueva cuenta
     const handleCrearCuenta = async (datos) => {
         try {
-            const response = await fetch('http://localhost:3000/api/cuentas/crear', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cuentas/crear`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ const Zona = () => {
     // para abrir el modal de editar usuario
     const handleEditarUsuario = async (id_usuario) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/users/usuarios/${id_usuario}`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/usuarios/${id_usuario}`);
             if (!response.ok) {
                 throw new Error('Error al obtener usuario');
             }
@@ -104,7 +104,7 @@ const Zona = () => {
     // para enviar los datos modificados
     const handleModificarUsuario = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/api/cuentas/modificar`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cuentas/modificar`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -141,7 +141,7 @@ const Zona = () => {
     // para eliminar un usuario
     const handleConfirmarEliminar = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/cuentas/eliminar', {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cuentas/eliminar`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -279,18 +279,18 @@ const Zona = () => {
                             className="border p-2 mb-4 w-full"
                         />
 
-                        <label className="block mb-2">Notify me:</label>
+                        <label className="block mb-2">Recibir notificaciones:</label>
                         <input
                             type="checkbox"
                             checked={notifyme}
                             onChange={(e) => setNotifyme(e.target.checked)}
-                            className="border p-2 mb-4"
+                            className="border p-2"
                         />
 
                         <button
                             type="button"
                             onClick={handleModificarUsuario}
-                            className="bg-[#5E17EB] text-white p-2  mt-8 rounded"
+                            className="bg-[#5E17EB] text-white p-2 w-full mt-8 rounded"
                         >
                             Guardar
                         </button>

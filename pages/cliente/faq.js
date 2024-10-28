@@ -9,7 +9,7 @@ const Faq = () => {
     useEffect(() => {
         const fetchFaqs = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/faq');
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/faq`);
                 const data = await response.json();
                 setFaqs(data);
             } catch (error) {
