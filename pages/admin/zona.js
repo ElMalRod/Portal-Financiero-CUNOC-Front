@@ -279,7 +279,7 @@ const Zona = () => {
                             className="border p-2 mb-4 w-full"
                         />
 
-                        <label className="block mb-2">Recibir notificaciones:</label>
+                        <label className="block mb-2">Recibir notificaciones (notifyme)</label>
                         <input
                             type="checkbox"
                             checked={notifyme}

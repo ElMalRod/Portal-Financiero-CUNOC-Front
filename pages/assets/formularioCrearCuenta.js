@@ -96,7 +96,7 @@ const FormularioCrearCuenta = ({ onSubmit }) => {
             onChange={() => setNotify(!notify)}
             className="mr-2"
           />
-          <label>Recibir notificaciones</label>
+          <label>Recibir notificaciones (notifyme)</label>
         </div>
 
         <div>
