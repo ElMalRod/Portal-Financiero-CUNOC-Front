@@ -14,7 +14,7 @@ const ReporteMovimientos = () => {
     // Fetch para obtener los datos desde la API con las fechas seleccionadas
     const fetchMovimientos = async (fechaInicio, fechaFin) => {
         try {
-            const response = await fetch(${process.env.NEXT_PUBLIC_API_URL}/reportes/movimientos?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reportes/movimientos?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`);
             const data = await response.json();
             setMovimientos(data);
         } catch (error) {
