@@ -7,6 +7,7 @@ const FormularioCrearCuenta = ({ onSubmit }) => {
   const [notify, setNotify] = useState(true);
   const [rol, setRol] = useState('cliente');
   const [mostrarAdvertencia, setMostrarAdvertencia] = useState(false);
+  const [limiteCredito, setLimiteCredito] = useState('');
 
   const generarNumeroTarjeta = () => {
     let numero = '';
@@ -40,14 +41,16 @@ const FormularioCrearCuenta = ({ onSubmit }) => {
       numero_tarjeta: numeroTarjeta,
       notify,
       rol,
+      limite_personalizado: tipoCuenta === 'personalizada' ? limiteCredito : null,
     };
 
     onSubmit(datos);
-    setNombreUsuario('');  // Limpiar el campo después de enviar
-    setTipoCuenta('gold');  // Restablecer tipo de cuenta a 'gold'
-    setNumeroTarjeta(generarNumeroTarjeta()); // Generar un nuevo número de tarjeta
+    setNombreUsuario(''); 
+    setTipoCuenta('gold');  
+    setNumeroTarjeta(generarNumeroTarjeta()); 
     setNotify(true);
-    setRol('cliente');  // Restablecer rol a 'cliente'
+    setRol('cliente');  
+    setLimiteCredito(''); 
   };
 
   return (
@@ -76,8 +79,23 @@ const FormularioCrearCuenta = ({ onSubmit }) => {
           >
             <option value="gold">Gold</option>
             <option value="normal">Normal</option>
+            <option value="personalizada">Personalizada</option>
           </select>
         </div>
+
+        {tipoCuenta === 'personalizada' && (
+          <div>
+            <label className="block mb-2">Límite de Crédito</label>
+            <input
+              type="number"
+              value={limiteCredito}
+              onChange={(e) => setLimiteCredito(e.target.value)}
+              className="border rounded p-2 w-full"
+              placeholder="Ingresa el límite de crédito"
+              required
+            />
+          </div>
+        )}
 
         <div>
           <label className="block mb-2">Número de Tarjeta</label>
