@@ -50,6 +50,16 @@ const Sidebar = () => {
         }
     }, []);
 
+        // Enlaces para Manuales
+        const clienteUrl = "https://docs.google.com/document/d/18yl2RqhtizqjqF48E0caE1QwIOTx09GckCbYiXBOJgY/edit?tab=t.0#heading=h.t48vj9f6fmak";
+        const adminUrl = "https://docs.google.com/document/d/1UFAG10jm3Gc8i-3QBgEOycMRxfVP0ZuWUC8P38qPjjI/edit?tab=t.0#heading=h.uwtpzkmp9874";
+    
+        // Función para abrir el enlace en una nueva pestaña
+        const openLinkInNewTab = (url) => {
+            window.open(url, "_blank", "noopener,noreferrer");
+        };
+    
+
     return (
         <>
             <button data-drawer-target="logo-sidebar" onClick={() => setIsSidebarOpen(!isSidebarOpen)} data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -191,7 +201,33 @@ const Sidebar = () => {
                             </>
                         )}
                     </ul>
+                    <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+                        {/* Enlace manual basado en el rol */}
+                        {isCliente && (
+                            <button
+                                onClick={() => openLinkInNewTab(clienteUrl)}
+                                className="flex items-center p-2 mt-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                                <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fillRule="evenodd" d="M11 4.717c-2.286-.58-4.16-.756-7.045-.71A1.99 1.99 0 0 0 2 6v11c0 1.133.934 2.022 2.044 2.007 2.759-.038 4.5.16 6.956.791V4.717Zm2 15.081c2.456-.631 4.198-.829 6.956-.791A2.013 2.013 0 0 0 22 16.999V6a1.99 1.99 0 0 0-1.955-1.993c-2.885-.046-4.76.13-7.045.71v15.081Z" clipRule="evenodd"/>
+                                </svg>
+                                <span className="flex-1 ms-3 whitespace-nowrap">Manual de Usuario</span>
+                            </button>
+                        )}
+                        {isAdmin && (
+                            <button
+                                onClick={() => openLinkInNewTab(adminUrl)}
+                                className="flex items-center p-2 mt-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                                <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path fillRule="evenodd" d="M11 4.717c-2.286-.58-4.16-.756-7.045-.71A1.99 1.99 0 0 0 2 6v11c0 1.133.934 2.022 2.044 2.007 2.759-.038 4.5.16 6.956.791V4.717Zm2 15.081c2.456-.631 4.198-.829 6.956-.791A2.013 2.013 0 0 0 22 16.999V6a1.99 1.99 0 0 0-1.955-1.993c-2.885-.046-4.76.13-7.045.71v15.081Z" clipRule="evenodd"/>
+                                </svg>
+                                <span className="flex-1 ms-3 whitespace-nowrap">Manual de Admin</span>
+                            </button>
+                        )}
+                    </div>
                 </div>
+
             </aside>
 
             {isModalOpen && (
